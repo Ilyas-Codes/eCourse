@@ -57,7 +57,7 @@ App name, logo, and colors can be customized using the `customize.json` file.
 
 ## Deployment
 
-One neat thing about PocketBase is that it can also serve our static frontend assets. to do that simply follow these steps:
+One neat thing about PocketBase is that it can also serve the static frontend assets. to do that simply follow these steps:
 
 1. Add the server URL where your PocketBase instance is hosted to `VITE_PROD_PB_URL` in the `.env` file
 

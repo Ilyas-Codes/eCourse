@@ -6,6 +6,7 @@
   import Courses from "../components/Courses.svelte";
   import { navigate } from "svelte-routing";
   import Title from "../components/Title.svelte";
+  import { t } from "../lib/i18n";
 
   onMount(async () => {
     if ($currentUser) {
@@ -18,7 +19,7 @@
   });
 </script>
 
-<Title suffix="My Courses" />
+<Title suffix={$t("myCourses")} />
 
 {#if $currentUser}
   <main class="flex h-dvh justify-between lg:overflow-x-hidden">

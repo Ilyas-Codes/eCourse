@@ -7,6 +7,7 @@
   import { pb } from "../lib/pocketbase";
   import { navigate } from "svelte-routing";
   import Title from "../components/Title.svelte";
+  import { t } from "../lib/i18n";
 
   const { name, logo, logo_size } = customize;
 
@@ -64,9 +65,9 @@
       class="flex w-[500px] flex-col gap-5 sm:w-full"
     >
       <div class="w-full space-y-1">
-        <h2 class="text-balance text-xl">Welcome to {name}</h2>
+        <h2 class="text-balance text-xl">{$t("welcomeTo")} {name}</h2>
         <h3 class="text-balance text-base text-white/50">
-          Please login to your account
+          {$t("pleaseLogin")}
         </h3>
       </div>
 
@@ -75,7 +76,7 @@
           in:slide={{ duration: 300, easing: quintOut }}
           class="text-balance text-red-400"
         >
-          Login failed. Please check your credentials and try again
+          {$t("loginFailed")}
         </h3>
       {/if}
 
@@ -85,7 +86,7 @@
           class={!isUsernameValid && isFormSubmitted
             ? "rounded-md bg-red-400/5 p-2 text-red-400 outline outline-[1.5px] outline-red-400/10 transition-all placeholder:text-red-400/50 focus:outline-red-400/20"
             : "rounded-md bg-white/5 p-2 outline outline-[1.5px] outline-white/10 transition-all placeholder:text-white/50 focus:outline-white/20"}
-          placeholder="Username / email"
+          placeholder={$t("username")}
           type="text"
         />
         {#if !isUsernameValid && isFormSubmitted}
@@ -93,7 +94,7 @@
             in:slide={{ duration: 300, easing: quintOut }}
             class="text-balance text-red-400"
           >
-            Username must be 3+ characters and cannot contain spaces
+            {$t("usernameNotValid")}
           </h3>
         {/if}
 
@@ -102,7 +103,7 @@
           class={!isPasswordValid && isFormSubmitted
             ? "rounded-md bg-red-400/5 p-2 text-red-400 outline outline-[1.5px] outline-red-400/10 transition-all placeholder:text-red-400/50 focus:outline-red-400/20"
             : "rounded-md bg-white/5 p-2 outline outline-[1.5px] outline-white/10 transition-all placeholder:text-white/50 focus:outline-white/20"}
-          placeholder="Password"
+          placeholder={$t("password")}
           type="password"
         />
         {#if !isPasswordValid && isFormSubmitted}
@@ -110,7 +111,7 @@
             in:slide={{ duration: 300, easing: quintOut }}
             class="text-balance text-red-400"
           >
-            Password must be 8+ characters
+            {$t("passwordNotValid")}
           </h3>
         {/if}
         <button
@@ -119,13 +120,14 @@
             ? "bg-main pointer-events-none flex items-center justify-center gap-2 rounded-md p-2 opacity-50"
             : "bg-main hover:bg-main/80 flex items-center justify-center gap-2 rounded-md p-2 transition"}
         >
-          {isLoading ? "Logging in..." : "Login"}
           {#if isLoading}
+            {$t("loggingIn")}
             <Icon
               class="flex-shrink-0 animate-spin text-base"
               icon="fluent:spinner-ios-16-regular"
             />
           {:else}
+            {$t("login")}
             <Icon class="flex-shrink-0 text-base" icon="ph:arrow-right" />
           {/if}
         </button>
@@ -134,9 +136,9 @@
         on:click={() => navigate("/")}
         class="mx-auto w-fit text-white/50"
       >
-        Logged in already? <span
-          class="text-white underline transition hover:text-white/80"
-          >My Courses</span
+        {$t("alreadyLogin")}
+        <span class="text-white underline transition hover:text-white/80"
+          >{$t("myCourses")}</span
         >
       </button>
     </div>

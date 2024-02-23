@@ -6,6 +6,7 @@
   import { isSearchVisible } from "../lib/store";
   import { navigate } from "svelte-routing";
   import slugify from "slugify";
+  import { t } from "../lib/i18n";
 
   let searchTerm = "";
 
@@ -54,11 +55,11 @@
       on:click|stopPropagation
       transition:scale={{ duration: 250, opacity: 0.001, start: 0.98 }}
       class={filteredLessons.length > 5
-        ? "hide-scrollbar relative m-auto h-[461px] w-[700px] overflow-y-scroll rounded-md bg-dark outline outline-[1.5px] outline-white/10"
-        : "hide-scrollbar relative m-auto w-[700px] overflow-y-scroll rounded-md bg-dark outline outline-[1.5px] outline-white/10"}
+        ? "hide-scrollbar bg-dark relative m-auto h-[461px] w-[700px] overflow-y-scroll rounded-md outline outline-[1.5px] outline-white/10"
+        : "hide-scrollbar bg-dark relative m-auto w-[700px] overflow-y-scroll rounded-md outline outline-[1.5px] outline-white/10"}
     >
       <div
-        class="sticky inset-x-0 top-0 flex w-full items-center justify-between gap-2 border-b-[1.5px] border-b-white/10 bg-dark px-4"
+        class="bg-dark sticky inset-x-0 top-0 flex w-full items-center justify-between gap-2 border-b-[1.5px] border-b-white/10 px-4"
       >
         <Icon
           class="flex-shrink-0 text-xl text-white/50"
@@ -68,7 +69,7 @@
           bind:value={searchTerm}
           class="flex-1 bg-transparent py-4 placeholder:text-white/50 focus:outline-none"
           type="text"
-          placeholder="Find a lesson..."
+          placeholder={$t("findLesson")}
         />
         <button on:click={() => ($isSearchVisible = false)}>
           <Icon
@@ -80,8 +81,9 @@
       <div class="w-full p-4">
         <p class="p-2 text-white/50">
           {#if filteredLessons.length === 0}
-            No lessons found
+            {$t("noLessonsFound")}
           {:else}
+            <!-- To translate -->
             Showing <span class="text-main">{filteredLessons.length}</span>
             {filteredLessons.length === 1 ? "lesson" : "lessons"}
           {/if}

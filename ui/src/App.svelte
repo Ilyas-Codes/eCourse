@@ -7,6 +7,7 @@
   import Lesson from "./routes/Lesson.svelte";
   import Search from "./components/Search.svelte";
   import Alert from "./components/Alert.svelte";
+  import { t, locale, locales } from "./lib/i18n";
 </script>
 
 {#if $currentUser}

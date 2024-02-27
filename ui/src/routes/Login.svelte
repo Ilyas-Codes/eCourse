@@ -117,8 +117,8 @@
         <button
           on:click={login}
           class={isLoading
-            ? "bg-main pointer-events-none flex items-center justify-center gap-2 rounded-md p-2 opacity-50"
-            : "bg-main hover:bg-main/80 flex items-center justify-center gap-2 rounded-md p-2 transition"}
+            ? "pointer-events-none flex items-center justify-center gap-2 rounded-md bg-main p-2 opacity-50"
+            : "flex items-center justify-center gap-2 rounded-md bg-main p-2 transition hover:bg-main/80"}
         >
           {#if isLoading}
             {$t("loggingIn")}

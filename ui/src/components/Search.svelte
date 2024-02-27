@@ -55,11 +55,11 @@
       on:click|stopPropagation
       transition:scale={{ duration: 250, opacity: 0.001, start: 0.98 }}
       class={filteredLessons.length > 5
-        ? "hide-scrollbar bg-dark relative m-auto h-[461px] w-[700px] overflow-y-scroll rounded-md outline outline-[1.5px] outline-white/10"
-        : "hide-scrollbar bg-dark relative m-auto w-[700px] overflow-y-scroll rounded-md outline outline-[1.5px] outline-white/10"}
+        ? "hide-scrollbar relative m-auto h-[461px] w-[700px] overflow-y-scroll rounded-md bg-dark outline outline-[1.5px] outline-white/10"
+        : "hide-scrollbar relative m-auto w-[700px] overflow-y-scroll rounded-md bg-dark outline outline-[1.5px] outline-white/10"}
     >
       <div
-        class="bg-dark sticky inset-x-0 top-0 flex w-full items-center justify-between gap-2 border-b-[1.5px] border-b-white/10 px-4"
+        class="sticky inset-x-0 top-0 flex w-full items-center justify-between gap-2 border-b-[1.5px] border-b-white/10 bg-dark px-4"
       >
         <Icon
           class="flex-shrink-0 text-xl text-white/50"

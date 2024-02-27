@@ -135,7 +135,7 @@
   }
 </script>
 
-<section class="bg-dark flex flex-1 flex-col gap-5 overflow-y-scroll p-5">
+<section class="flex flex-1 flex-col gap-5 overflow-y-scroll bg-dark p-5">
   <div
     class="flex w-full items-center justify-between gap-5 sm:flex-col sm:items-start"
   >
@@ -181,11 +181,11 @@
         class="flex w-[500px] flex-col items-center gap-5 text-center sm:w-full"
       >
         <Icon
-          class="text-main flex-shrink-0 text-6xl"
+          class="flex-shrink-0 text-6xl text-main"
           icon="ph:book-open-text-fill"
         />
         <div class="space-y-3">
-          <h1 class="text-30px text-balance leading-snug">
+          <h1 class="text-balance text-30px leading-snug">
             {$t("noCourseAssigned")}
           </h1>
           <p class="text-base text-white/50">
@@ -215,7 +215,7 @@
                 class="flex w-full items-center justify-between gap-5 sm:flex-col"
               >
                 <div
-                  class="xs:flex-col xs:items-start flex items-center gap-3 sm:w-full"
+                  class="flex items-center gap-3 sm:w-full xs:flex-col xs:items-start"
                 >
                   <h3
                     class={progressRecord.status === "Completed"
@@ -289,12 +289,12 @@
                 <div class="flex items-center gap-3">
                   {#if lesson.video}
                     <Icon
-                      class="text-main flex-shrink-0 text-3xl"
+                      class="flex-shrink-0 text-3xl text-main"
                       icon="ph:video"
                     />
                   {:else if lesson.content}
                     <Icon
-                      class="text-main flex-shrink-0 text-3xl"
+                      class="flex-shrink-0 text-3xl text-main"
                       icon="ph:text-align-left"
                     />
                   {/if}

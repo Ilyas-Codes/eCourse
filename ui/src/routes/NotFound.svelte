@@ -36,7 +36,7 @@
       </p>
       <button
         on:click={() => navigate("/")}
-        class="bg-main hover:bg-main/80 2xs:w-full 2xs:px-0 flex items-center justify-center gap-2 rounded-md px-4 py-2 transition"
+        class="flex items-center justify-center gap-2 rounded-md bg-main px-4 py-2 transition hover:bg-main/80 2xs:w-full 2xs:px-0"
       >
         <Icon class="flex-shrink-0" icon="ph:arrow-left" />
         {$t("myCourses")}</button

@@ -4,6 +4,7 @@
   import { currentUser } from "../lib/pocketbase";
   import Icon from "@iconify/svelte";
   import Title from "../components/Title.svelte";
+  import { t } from "../lib/i18n";
 
   export let page = "page";
   const location = useLocation();
@@ -35,10 +36,10 @@
       </p>
       <button
         on:click={() => navigate("/")}
-        class="flex items-center justify-center gap-2 rounded-md bg-main px-4 py-2 transition hover:bg-main/80 2xs:w-full 2xs:px-0"
+        class="bg-main hover:bg-main/80 2xs:w-full 2xs:px-0 flex items-center justify-center gap-2 rounded-md px-4 py-2 transition"
       >
         <Icon class="flex-shrink-0" icon="ph:arrow-left" />
-        My Courses</button
+        {$t("myCourses")}</button
       >
     </div>
   </main>

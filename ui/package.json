@@ -27,6 +27,7 @@
   "dependencies": {
     "plyr": "^3.7.8",
     "pocketbase": "^0.21.1",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "svelte-i18n": "^4.0.0"
   }
 }

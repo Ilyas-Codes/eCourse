@@ -28,7 +28,7 @@
   import slugify from "slugify";
   import NotFound from "./NotFound.svelte";
   import Title from "../components/Title.svelte";
-
+  import { t } from "../lib/i18n";
   export let lessonTitle;
 
   let loading = {};
@@ -233,8 +233,8 @@
               resource.lesson.includes(lesson.id),
             ).length > 0 ||
             lesson.downloads.length > 0
-              ? "flex flex-1 flex-col justify-between gap-5 overflow-y-scroll bg-dark p-5"
-              : "flex flex-1 flex-col justify-between overflow-y-scroll bg-dark p-5"}
+              ? "bg-dark flex flex-1 flex-col justify-between gap-5 overflow-y-scroll p-5"
+              : "bg-dark flex flex-1 flex-col justify-between overflow-y-scroll p-5"}
           >
             <div class="space-y-5">
               <button
@@ -242,7 +242,7 @@
                 class="flex items-center gap-2 text-white/50 transition hover:text-white"
               >
                 <Icon class="flex-shrink-0" icon="ph:arrow-left" />
-                My Courses</button
+                {$t("myCourses")}</button
               >
               <div
                 class="flex items-end justify-between gap-5 sm:w-full sm:flex-col sm:items-start sm:gap-3"
@@ -270,7 +270,7 @@
                         class="line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md bg-white/10 px-4 py-2 outline outline-[1.5px] outline-white/20 transition hover:bg-white/20 sm:order-last sm:w-full"
                       >
                         <Icon class="flex-shrink-0" icon="ph:arrow-left" />
-                        Previous Lesson
+                        {$t("previousLesson")}
                       </button>
                     {/if}
 
@@ -283,8 +283,8 @@
                           : "line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md bg-emerald-400/60 px-4 py-2 transition hover:bg-emerald-400/50 sm:order-first sm:w-full"}
                       >
                         {currentCourseStatus === "Completed"
-                          ? "Course Completed"
-                          : "Complete Course"}
+                          ? $t("courseCompleted")
+                          : $t("completeCourse")}
                         {#if loading[lesson.id]}
                           <Icon
                             class="flex-shrink-0 animate-spin text-base"
@@ -297,9 +297,9 @@
                     {:else}
                       <button
                         on:click={goToNextLesson}
-                        class="line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md bg-main px-4 py-2 transition hover:bg-main/80 sm:order-first sm:w-full"
+                        class="bg-main hover:bg-main/80 line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md px-4 py-2 transition sm:order-first sm:w-full"
                       >
-                        Next Lesson
+                        {$t("nextLesson")}
                         <Icon class="flex-shrink-0" icon="ph:arrow-right" />
                       </button>
                     {/if}
@@ -331,8 +331,8 @@
                   class="flex w-full items-center justify-center rounded-md bg-white/5 p-[rfs(50px)] sm:p-5"
                 >
                   <article
-                    class="flex w-full max-w-[1280px] flex-1 flex-col gap-5 prose-headings:leading-tight prose-h1:text-50px prose-h2:text-40px prose-h3:text-30px prose-h4:text-25px prose-h5:text-20px prose-h6:text-18px prose-p:text-base prose-p:leading-relaxed prose-p:text-white/50 prose-a:text-base prose-a:text-main prose-a:underline prose-a:underline-offset-4 prose-blockquote:w-fit prose-blockquote:rounded-md prose-blockquote:border-l-2 prose-blockquote:border-l-white/50 prose-blockquote:bg-white/5 prose-blockquote:p-5 prose-strong:text-white prose-code:text-base prose-code:text-white/50 prose-ol:list-inside prose-ol:list-decimal prose-ol:space-y-2 prose-ol:text-base
-                    prose-ul:list-inside prose-ul:list-disc prose-ul:space-y-2 prose-ul:text-base prose-img:w-full prose-img:rounded-md"
+                    class="prose-headings:leading-tight prose-h1:text-50px prose-h2:text-40px prose-h3:text-30px prose-h4:text-25px prose-h5:text-20px prose-h6:text-18px prose-p:text-base prose-p:leading-relaxed prose-p:text-white/50 prose-a:text-base prose-a:text-main prose-a:underline prose-a:underline-offset-4 prose-blockquote:w-fit prose-blockquote:rounded-md prose-blockquote:border-l-2 prose-blockquote:border-l-white/50 prose-blockquote:bg-white/5 prose-blockquote:p-5 prose-strong:text-white prose-code:text-base prose-code:text-white/50 prose-ol:list-inside prose-ol:list-decimal prose-ol:space-y-2 prose-ol:text-base prose-ul:list-inside prose-ul:list-disc prose-ul:space-y-2 prose-ul:text-base prose-img:w-full prose-img:rounded-md
+                    flex w-full max-w-[1280px] flex-1 flex-col gap-5"
                   >
                     {@html lesson.content}
                   </article>
@@ -343,7 +343,7 @@
                 <div class="space-y-2">
                   <h3 class="flex items-center gap-2 text-base">
                     <Icon icon="ph:text-align-left flex-shrink-0" />
-                    Summary
+                    {$t("summary")}
                   </h3>
                   <p class="text-white/50">
                     {lesson.summary}
@@ -427,7 +427,7 @@
                 <div class="flex-1 space-y-4 md:w-full">
                   <h2 class="flex items-center gap-2 text-base">
                     <Icon class="flex-shrink-0" icon="ph:file" />
-                    Downloads
+                    {$t("downloads")}
                   </h2>
                   {#each lesson.downloads as download}
                     <a

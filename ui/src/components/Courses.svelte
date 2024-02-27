@@ -15,6 +15,7 @@
   } from "../lib/store";
   import { navigate } from "svelte-routing";
   import { tick } from "svelte";
+  import { t } from "../lib/i18n";
 
   let isOpen = {};
   let loading = {};
@@ -134,7 +135,7 @@
   }
 </script>
 
-<section class="flex flex-1 flex-col gap-5 overflow-y-scroll bg-dark p-5">
+<section class="bg-dark flex flex-1 flex-col gap-5 overflow-y-scroll p-5">
   <div
     class="flex w-full items-center justify-between gap-5 sm:flex-col sm:items-start"
   >
@@ -150,7 +151,7 @@
       </button>
       <h1 class="flex items-center gap-2 text-base">
         <Icon class="flex-shrink-0" icon="ph:graduation-cap" />
-        My Courses
+        {$t("myCourses")}
       </h1>
     </div>
     {#if $isLoading}
@@ -160,9 +161,7 @@
     {:else if $courses.length > 0}
       <h2 class="text-white/50 sm:hidden">
         {$courses.length}
-        {$courses.length === 1
-          ? "Course assigned to you"
-          : "Courses assigned to you"}
+        {$courses.length === 1 ? $t("courseAssigned") : $t("coursesAssigned")}
       </h2>
     {/if}
   </div>
@@ -182,16 +181,15 @@
         class="flex w-[500px] flex-col items-center gap-5 text-center sm:w-full"
       >
         <Icon
-          class="flex-shrink-0 text-6xl text-main"
+          class="text-main flex-shrink-0 text-6xl"
           icon="ph:book-open-text-fill"
         />
         <div class="space-y-3">
-          <h1 class="text-balance text-30px leading-snug">
-            No courses assigned to you!
+          <h1 class="text-30px text-balance leading-snug">
+            {$t("noCourseAssigned")}
           </h1>
           <p class="text-base text-white/50">
-            Courses assigned to you will show up here, please check on this page
-            from time to time to ensure you never miss a course.
+            {$t("courseAssignedCheck")}
           </p>
         </div>
       </div>
@@ -217,7 +215,7 @@
                 class="flex w-full items-center justify-between gap-5 sm:flex-col"
               >
                 <div
-                  class="flex items-center gap-3 sm:w-full xs:flex-col xs:items-start"
+                  class="xs:flex-col xs:items-start flex items-center gap-3 sm:w-full"
                 >
                   <h3
                     class={progressRecord.status === "Completed"
@@ -226,7 +224,11 @@
                         ? "rounded-full bg-amber-400/10 px-3 py-1 text-amber-400/70"
                         : "rounded-full bg-white/10 px-3 py-1 text-white/70"}
                   >
-                    {progressRecord.status}
+                    {progressRecord.status === "Completed"
+                      ? $t("completed")
+                      : progressRecord.status === "In Progress"
+                        ? $t("inProgress")
+                        : $t("notStarted")}
                   </h3>
                   <h3 class="flex items-center gap-2 text-white/50">
                     <Icon class="flex-shrink-0 text-lg" icon="ph:book-open" />
@@ -234,8 +236,8 @@
                       .length}
                     {$lessons.filter((lesson) => lesson.course === course.id)
                       .length === 1
-                      ? "Lesson in this course"
-                      : "Lessons in this course"}
+                      ? $t("lessonInThisCourse")
+                      : $t("lessonsInThisCourse")}
                   </h3>
                 </div>
                 <div class="flex items-center gap-3 sm:w-full">
@@ -246,7 +248,7 @@
                       class={loading[course.id]
                         ? "pointer-events-none line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md px-4 py-2 text-red-400 opacity-50 outline outline-[1.5px] outline-red-400/20 transition hover:bg-red-400/20 sm:w-full sm:flex-1 sm:px-0"
                         : "line-clamp-1 flex items-center justify-center gap-2 truncate rounded-md px-4 py-2 text-red-400 outline outline-[1.5px] outline-red-400/20 transition hover:bg-red-400/20 sm:w-full sm:flex-1 sm:px-0"}
-                      >Reset Progress
+                      >{$t("resetProgress")}
                       {#if loading[course.id]}
                         <Icon
                           class="flex-shrink-0 animate-spin text-base"
@@ -260,10 +262,10 @@
                     on:click={() => goToFirstLessonOfCourse(course.id)}
                     class="line-clamp-1 truncate rounded-md bg-white/10 px-4 py-2 outline outline-[1.5px] outline-white/20 transition hover:bg-white/20 sm:w-full sm:flex-1 sm:px-0"
                     >{progressRecord.status === "Completed"
-                      ? "Open Course"
+                      ? $t("openCourse")
                       : progressRecord.status === "In Progress"
-                        ? "Continue Course"
-                        : "Start Course"}</button
+                        ? $t("continueCourse")
+                        : $t("startCourse")}</button
                   >
                 </div>
               </div>
@@ -287,12 +289,12 @@
                 <div class="flex items-center gap-3">
                   {#if lesson.video}
                     <Icon
-                      class="flex-shrink-0 text-3xl text-main"
+                      class="text-main flex-shrink-0 text-3xl"
                       icon="ph:video"
                     />
                   {:else if lesson.content}
                     <Icon
-                      class="flex-shrink-0 text-3xl text-main"
+                      class="text-main flex-shrink-0 text-3xl"
                       icon="ph:text-align-left"
                     />
                   {/if}
@@ -310,7 +312,7 @@
                   class="flex items-center gap-2 p-2 text-white/50 transition hover:text-white"
                 >
                   <Icon class="flex-shrink-0 text-lg" icon="ph:eye" />
-                  View</button
+                  {$t("view")}</button
                 >
               </div>
             {/if}

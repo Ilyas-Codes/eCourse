@@ -9,6 +9,7 @@
   import { isSidebarVisible, isSearchVisible, isLoading } from "../lib/store";
   import { pb, courses, resources, currentUser } from "../lib/pocketbase";
   import { navigate, useLocation } from "svelte-routing";
+  import { t } from "../lib/i18n";
 
   export let isCoursesVisible = true;
 
@@ -66,9 +67,7 @@
       >
         <Icon class="flex-shrink-0" icon="ph:graduation-cap" />
         {$courses.length}
-        {$courses.length === 1
-          ? "Course assigned to you"
-          : "Courses assigned to you"}
+        {$courses.length === 1 ? $t("courseAssigned") : $t("coursesAssigned")}
       </h2>
     {/if}
 
@@ -77,7 +76,7 @@
       class="flex w-full items-center gap-2 rounded-md border-[1.5px] border-white/10 bg-transparent p-2 text-white/50 outline-none transition hover:border-transparent hover:bg-white/10"
     >
       <Icon class="flex-shrink-0 text-base" icon="ph:magnifying-glass" />
-      Search
+      {$t("search")}
     </button>
 
     <div class="hide-scrollbar flex flex-grow flex-col gap-5 overflow-y-scroll">
@@ -102,7 +101,7 @@
             class="flex items-center gap-2 text-xs tracking-[2px] text-white/50"
           >
             <Icon class="flex-shrink-0 text-base" icon="ph:graduation-cap" />
-            COURSES
+            {$t("COURSES")}
           </h3>
           <div>
             {#each $courses as course (course.id)}
@@ -139,7 +138,7 @@
             class="flex items-center gap-2 text-xs tracking-[2px] text-white/50"
           >
             <Icon class="flex-shrink-0 text-base" icon="ph:link" />
-            RESOURCES
+            {$t("RESOURCES")}
           </h3>
           <div>
             {#each $resources as resource}

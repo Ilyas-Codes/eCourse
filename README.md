@@ -90,7 +90,7 @@ WORKDIR /eCourse/ui
 RUN sed -i 's/^VITE_PROD_PB_URL=.*/VITE_PROD_PB_URL=http:\/\/127.0.0.1:8090/' .env
 RUN npm install
 RUN npm run build
-RUN mv dist /eCourse/pb/pb_public
+RUN mv dist/* /eCourse/pb/pb_public
 
 EXPOSE 8090
 
